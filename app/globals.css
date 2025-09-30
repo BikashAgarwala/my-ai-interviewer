@@ -1,26 +1,122 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
+  /* 1. Brand Color Primitives (The "DNA" of your theme) */
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --hue-primary: 280;    /* Purple/Blue hue for branding */
+    --hue-destructive: 20; /* Red hue for destructive actions */
+
+    --chroma-subtle: 0.02; /* Chroma for backgrounds, cards, borders */
+    --chroma-accent: 0.15; /* Chroma for primary buttons and highlights */
+  }
+
+  /* 2. Light Theme (Default) */
+  :root {
+    --background: oklch(98% var(--chroma-subtle) var(--hue-primary));
+    --foreground: oklch(8% var(--chroma-subtle) var(--hue-primary));
+    --card: oklch(100% 0 0);
+    --card-foreground: oklch(8% var(--chroma-subtle) var(--hue-primary));
+    --popover: oklch(100% 0 0);
+    --popover-foreground: oklch(8% var(--chroma-subtle) var(--hue-primary));
+    --primary: oklch(65% var(--chroma-accent) var(--hue-primary));
+    --primary-foreground: oklch(100% 0 0);
+    --secondary: oklch(95% var(--chroma-subtle) var(--hue-primary));
+    --secondary-foreground: oklch(20% var(--chroma-subtle) var(--hue-primary));
+    --muted: oklch(95% var(--chroma-subtle) var(--hue-primary));
+    --muted-foreground: oklch(50% var(--chroma-subtle) var(--hue-primary));
+    --accent: oklch(95% var(--chroma-subtle) var(--hue-primary));
+    --accent-foreground: oklch(20% var(--chroma-subtle) var(--hue-primary));
+    --destructive: oklch(60% 0.2 var(--hue-destructive));
+    --destructive-foreground: oklch(100% 0 0);
+    --border: oklch(90% var(--chroma-subtle) var(--hue-primary));
+    --input: oklch(90% var(--chroma-subtle) var(--hue-primary));
+    --ring: oklch(65% var(--chroma-accent) var(--hue-primary));
+
+    --radius: 0.5rem;
+  }
+
+  /* 3. Dark Theme */
+  .dark {
+    --background: oklch(8% var(--chroma-subtle) var(--hue-primary));
+    --foreground: oklch(95% 0.01 var(--hue-primary));
+    --card: oklch(12% var(--chroma-subtle) var(--hue-primary));
+    --card-foreground: oklch(95% 0.01 var(--hue-primary));
+    --popover: oklch(12% var(--chroma-subtle) var(--hue-primary));
+    --popover-foreground: oklch(95% 0.01 var(--hue-primary));
+    --primary: oklch(70% var(--chroma-accent) var(--hue-primary));
+    --primary-foreground: oklch(8% var(--chroma-subtle) var(--hue-primary));
+    --secondary: oklch(15% var(--chroma-subtle) var(--hue-primary));
+    --secondary-foreground: oklch(90% 0.01 var(--hue-primary));
+    --muted: oklch(15% var(--chroma-subtle) var(--hue-primary));
+    --muted-foreground: oklch(60% 0.02 var(--hue-primary));
+    --accent: oklch(18% var(--chroma-subtle) var(--hue-primary));
+    --accent-foreground: oklch(95% 0.01 var(--hue-primary));
+    --destructive: oklch(60% 0.2 var(--hue-destructive));
+    --destructive-foreground: oklch(95% 0.01 var(--hue-primary));
+    --border: oklch(20% var(--chroma-subtle) var(--hue-primary));
+    --input: oklch(15% var(--chroma-subtle) var(--hue-primary));
+    --ring: oklch(70% var(--chroma-accent) var(--hue-primary));
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* 4. Theme Configuration & Base Styles (Your original setup, now cleaner) */
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  /* Main colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Chart colors (kept original as they are a distinct palette) */
+  --color-chart-1: oklch(0.6 0.15 280);
+  --color-chart-2: oklch(0.65 0.12 260);
+  --color-chart-3: oklch(0.7 0.1 240);
+  --color-chart-4: oklch(0.75 0.08 220);
+  --color-chart-5: oklch(0.8 0.06 200);
+
+  /* Radii */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Simplified Sidebar colors (inherits from main theme) */
+  --color-sidebar: var(--card);
+  --color-sidebar-foreground: var(--card-foreground);
+  --color-sidebar-primary: var(--primary);
+  --color-sidebar-primary-foreground: var(--primary-foreground);
+  --color-sidebar-accent: var(--accent);
+  --color-sidebar-accent-foreground: var(--accent-foreground);
+  --color-sidebar-border: var(--border);
+  --color-sidebar-ring: var(--ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
