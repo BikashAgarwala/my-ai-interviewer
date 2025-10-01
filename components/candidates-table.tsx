@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { ChevronUp, ChevronDown, ChevronsUpDown } from "lucide-react"
 import { CandidateDetailsModal } from "./candidate-details-modal"
 import { Candidate } from "@/store/interview-store"
+import ReactMarkdown from "react-markdown"
 
 interface CandidatesTableProps {
   candidates: Candidate[]
@@ -144,7 +145,9 @@ export function CandidatesTable({ candidates, searchQuery }: CandidatesTableProp
                     </Badge>
                   </TableCell>
                   <TableCell className="text-sm text-muted-foreground max-w-[400px]">
-                    <p className="text-pretty leading-relaxed">{candidate.aiSummary}</p>
+                    <p className="text-pretty leading-relaxed">
+                      <ReactMarkdown>{candidate.aiSummary}</ReactMarkdown>
+                    </p>
                   </TableCell>
                 </TableRow>
               ))}

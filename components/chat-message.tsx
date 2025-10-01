@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import ReactMarkdown from "react-markdown"
 
 interface ChatMessageProps {
   message: string
@@ -26,7 +27,9 @@ export function ChatMessage({ message, isAI, timestamp, className }: ChatMessage
           <span className="text-sm font-medium text-foreground">{isAI ? "AI Interviewer" : "You"}</span>
           <span className="text-xs text-muted-foreground">{timestamp}</span>
         </div>
-        <div className={cn("text-sm leading-relaxed", isAI ? "text-foreground" : "text-foreground/90")}>{message}</div>
+        <div className={cn("text-sm leading-relaxed", isAI ? "text-foreground" : "text-foreground/90")}>
+          <ReactMarkdown>{message}</ReactMarkdown>
+        </div>
       </div>
     </div>
   )

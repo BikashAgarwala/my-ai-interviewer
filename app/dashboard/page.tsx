@@ -60,7 +60,26 @@ export default function InterviewerDashboard() {
             </CardContent>
           </Card>
         </div>
-        <CandidatesTable candidates={candidates} searchQuery={searchQuery} />
+
+        <div className="mb-6">
+          <div className="relative max-w-md">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+            <Input
+              placeholder="Search candidates..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10 bg-input/50 border-border/50 focus:border-primary/50"
+            />
+          </div>
+        </div>
+
+        <div className="mb-8">
+          <div className="mb-4">
+            <h2 className="text-xl font-semibold text-foreground mb-1">Recent Interviews</h2>
+            <p className="text-sm text-muted-foreground">Click on any row to view detailed interview results</p>
+          </div>
+          <CandidatesTable candidates={candidates} searchQuery={searchQuery} />
+        </div>
       </div>
     </div>
   )

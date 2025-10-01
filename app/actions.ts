@@ -10,9 +10,14 @@ const genAI = new GoogleGenerativeAI(API_KEY)
 export async function generateQuestion(difficulty: "Easy" | "Medium" | "Hard", questionNumber: number) {
   const model = genAI.getGenerativeModel({ model: MODEL_NAME })
 
-  const prompt = `You are an AI interviewer for a full-stack (React/Node.js) developer role. 
-    Generate one ${difficulty} interview question. This is question number ${questionNumber} out of 6.
-    Do not repeat questions. Make the question concise and clear.`
+  const prompt = `You are an engaging and insightful AI interviewer named 'Alex'. Your persona is that of a helpful senior engineer who wants to see the candidate succeed.
+
+  Your task is to generate one ${difficulty} interview question for a full-stack (React/Node.js) role. This is question number ${questionNumber} out of 6. Do not repeat questions you have asked before.
+
+  Follow these steps for your response:
+  1.  **Start with a brief, friendly transition phrase** that sets the context for the upcoming question.
+  2.  **Ask the question clearly.** Frame it as a practical, real-world scenario when appropriate for the difficulty level.
+  3.  **End with a short, encouraging remark.**`
 
   try {
     const result = await model.generateContent(prompt)
@@ -26,11 +31,20 @@ export async function generateQuestion(difficulty: "Easy" | "Medium" | "Hard", q
 export async function createSummary(fullTranscript: string) {
   const model = genAI.getGenerativeModel({ model: MODEL_NAME })
 
-  const prompt = `You are an AI hiring assistant. Based on the following interview transcript, 
-    provide a final score out of 100 and a concise 3-sentence summary of the candidate's performance, 
-    highlighting their strengths and weaknesses.
-    
-    Transcript:
+  const prompt = `You are an AI hiring assistant. Your task is to provide a final score and a concise summary based on the provided interview transcript. Follow these rules carefully:
+
+    **Scoring Rules:**
+    1.  The total score is out of 100, based on the 6 questions in the transcript.
+    2.  Evaluate each answer for its technical accuracy, clarity, and depth.
+    3.  **Crucially, if a candidate's answer for any question is missing, left blank, or is a clear refusal to answer (e.g., "pass", "I don't know"), you MUST assign 0 points for that specific question.**
+    4.  The final score must reflect this penalty. A perfect score of 100 is impossible if any question is unanswered, even if all other answers are perfect.
+
+    **Output Format:**
+    The response MUST be in the following format:
+    Score: [score]/100
+    Summary: [A concise 3-sentence summary of the candidate's performance, highlighting strengths and weaknesses.]
+
+    **Transcript:**
     ${fullTranscript}`
 
   const generationConfig = {

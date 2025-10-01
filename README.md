@@ -2,13 +2,13 @@
 
 An AI-powered interview platform built with Next.js that simulates a real-world, timed technical interview. This application allows candidates to upload a resume for automated information extraction and then engage in a structured interview with a generative AI. Interviewers are provided with a comprehensive dashboard to review all candidate submissions, scores, and AI-generated performance summaries.
 
-**[Live Demo Link Here]**
+**https://my-ai-interviewer-dusky.vercel.app/**
 
 ---
 
-## 📸 Demo
+<!-- ## 📸 Demo
 
-_(It is highly recommended to record a GIF of your application in action and place it here. Use a tool like Loom, Kap, or ScreenToGif.)_
+_(It is highly recommended to record a GIF of your application in action and place it here. Use a tool like Loom, Kap, or ScreenToGif.)_ -->
 
 ## ✨ Features
 
@@ -55,8 +55,8 @@ To get a local copy up and running, follow these simple steps.
 1.  **Clone the repository:**
 
     ```bash
-    git clone https://github.com/[Your-GitHub-Username]/[Your-Repo-Name].git
-    cd [Your-Repo-Name]
+    git clone https://github.com/BikashAgarwala/my-ai-interviewer.git
+    cd my-ai-interviewer
     ```
 
 2.  **Install NPM packages:**

@@ -4,6 +4,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { Mail, Phone, Calendar } from "lucide-react"
+import ReactMarkdown from "react-markdown"
 
 interface CandidateDetails {
   id: string
@@ -42,7 +43,6 @@ export function CandidateDetailsModal({ candidate, open, onOpenChange }: Candida
         </DialogHeader>
 
         <div className="space-y-6">
-          {/* Contact Information */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="flex items-center gap-3 p-3 rounded-lg bg-muted/30">
               <Mail className="h-4 w-4 text-muted-foreground" />
@@ -74,7 +74,9 @@ export function CandidateDetailsModal({ candidate, open, onOpenChange }: Candida
               </div>
             </div>
             <div className="p-4 rounded-lg bg-muted/30">
-              <p className="text-sm leading-relaxed text-pretty">{candidate.aiSummary}</p>
+              <p className="text-sm leading-relaxed text-pretty">
+                <ReactMarkdown>{candidate.aiSummary}</ReactMarkdown>
+              </p>
             </div>
           </div>
 
@@ -91,10 +93,14 @@ export function CandidateDetailsModal({ candidate, open, onOpenChange }: Candida
                     </div>
                     <div className="flex-1 space-y-3">
                       <div>
-                        <p className="font-semibold text-foreground leading-relaxed">{qa.question}</p>
+                        <p className="font-semibold text-foreground leading-relaxed">
+                          <ReactMarkdown>{qa.question}</ReactMarkdown>
+                        </p>
                       </div>
                       <div className="pl-4 border-l-2 border-muted">
-                        <p className="text-sm text-muted-foreground leading-relaxed text-pretty">{qa.answer}</p>
+                        <p className="text-sm text-muted-foreground leading-relaxed text-pretty">
+                          <ReactMarkdown>{qa.answer}</ReactMarkdown>
+                        </p>
                       </div>
                     </div>
                   </div>
