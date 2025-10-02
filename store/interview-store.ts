@@ -49,7 +49,6 @@ const initialActiveState = {
   candidateDetails: { name: "", email: "", phone: "" },
 };
 
-// --- Zustand Store Implementation ---
 export const useInterviewStore = create<InterviewState & InterviewActions>()(
   persist(
     (set, get) => ({
@@ -84,13 +83,13 @@ export const useInterviewStore = create<InterviewState & InterviewActions>()(
         const { activeInterview } = get();
 
         const questionsAndAnswers: Array<{ question: string; answer: string }> = [];
-        for (let i = 0; i < activeInterview.messages.length; i++) {
-          if (!activeInterview.messages[i].isAI) {
-            const questionMessage = activeInterview.messages.slice(i).find(m => m.isAI);
-            if (questionMessage) {
+        for (let i = 1; i < activeInterview.messages.length; i++) {
+          if (activeInterview.messages[i].isAI) {
+            const answerMessage = activeInterview.messages.slice(i).find(m => !m.isAI);
+            if (answerMessage) {
               questionsAndAnswers.push({
-                question: questionMessage.content,
-                answer: activeInterview.messages[i].content,
+                question: activeInterview.messages[i].content,
+                answer: answerMessage.content,
               });
             }
           }
