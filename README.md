@@ -3,6 +3,7 @@
 An AI-powered interview platform built with Next.js that simulates a real-world, timed technical interview. This application allows candidates to upload a resume for automated information extraction and then engage in a structured interview with a generative AI. Interviewers are provided with a comprehensive dashboard to review all candidate submissions, scores, and AI-generated performance summaries.
 
 **https://my-ai-interviewer-dusky.vercel.app/**
+**https://my-ai-interviewer-dusky.vercel.app/dashboard**
 
 ---
 
