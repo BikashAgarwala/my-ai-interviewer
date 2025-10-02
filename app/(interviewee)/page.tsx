@@ -65,7 +65,7 @@ export default function AIInterviewerPage() {
   const handleSubmit = async () => {
     if (isLoading) return
 
-    addMessage({ id: Date.now().toString(), content: currentAnswer, isAI: false, timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) })
+    addMessage({ id: Date.now().toString(), content: (currentAnswer || "Not answered"), isAI: false, timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) })
     setCurrentAnswer("")
     await fetchNextQuestion(questionNumber)
   }

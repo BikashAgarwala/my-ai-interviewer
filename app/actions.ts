@@ -10,14 +10,11 @@ const genAI = new GoogleGenerativeAI(API_KEY)
 export async function generateQuestion(difficulty: "Easy" | "Medium" | "Hard", questionNumber: number) {
   const model = genAI.getGenerativeModel({ model: MODEL_NAME })
 
-  const prompt = `You are an engaging and insightful AI interviewer named 'Alex'. Your persona is that of a helpful senior engineer who wants to see the candidate succeed.
+  const prompt = `You are an engaging and insightful AI interviewer. Your persona is that of a helpful senior engineer who wants to see the candidate succeed.
 
   Your task is to generate one ${difficulty} interview question for a full-stack (React/Node.js) role. This is question number ${questionNumber} out of 6. Do not repeat questions you have asked before.
 
-  Follow these steps for your response:
-  1.  **Start with a brief, friendly transition phrase** that sets the context for the upcoming question.
-  2.  **Ask the question clearly.** Frame it as a practical, real-world scenario when appropriate for the difficulty level.
-  3.  **End with a short, encouraging remark.**`
+  **Ask the question clearly.** Frame it as a practical, real-world scenario when appropriate for the difficulty level.`
 
   try {
     const result = await model.generateContent(prompt)
